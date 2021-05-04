@@ -5,6 +5,7 @@ from flask import session, request, abort
 from app.entities import robot
 from app.entities.robot import Robot
 from app.exceptions.robot_exception import RobotException
+from app.daos.toy_robot_session import ToyRobotSession
 
 KEY_SESSION_ROBOT = 'robot'
 KEY_SESSION_ID = 'session_id'
@@ -17,14 +18,12 @@ def generate_session_id():
 class RobotView:
     def __init__(self):
         self.args = request.args
-        session_id = self.args.get(KEY_SESSION_ID)
+        self.toy_robot_session = ToyRobotSession()
+        self.session_id = self.args.get(KEY_SESSION_ID)
 
-        if session_id:
-            print(type(session_id))
-            print(f'using session_id {session_id}')
-            print(session.get(session_id))
+        if self.session_id:
             # If there is an existing session, then reconstruct the robot using session info
-            robot_session_info = session.get(session_id).get(KEY_SESSION_ROBOT)
+            robot_session_info = self.toy_robot_session.get_session(self.session_id)
             self.robot = Robot(robot_session_info)
             self.robot.report()
         else:
@@ -32,19 +31,10 @@ class RobotView:
             self.robot = Robot()
 
     def create_session(self, session_id):
-        print(f'creating new session with id: {session_id}')
-        session[session_id] = {
-            KEY_SESSION_ROBOT: self.robot.report()
-        }
-        print(session)
-        print(session[session_id])
-        print(session.get(session_id))
+        self.toy_robot_session.put_session(session_id, self.robot.report())
 
     def update_session(self):
-        session_id = self.args.get(KEY_SESSION_ID)
-        session[session_id] = {
-            KEY_SESSION_ROBOT: self.robot.report()
-        }
+        self.toy_robot_session.update_session(self.session_id, self.robot.report())
 
     def place_robot(self):
         x = self.args.get(robot.KEY_X)
@@ -62,11 +52,11 @@ class RobotView:
             self.update_session()
             return self.robot.report()
         else:
-            session_id = generate_session_id()
-            self.create_session(session_id)
+            new_session_id = generate_session_id()
+            self.create_session(new_session_id)
 
             response = self.robot.report()
-            response['session_id'] = session_id
+            response['session_id'] = new_session_id
 
             return response
 

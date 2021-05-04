@@ -10,7 +10,6 @@ flask_secrets = secrets_manager.get_value(SECRET_NAME_FLASK)
 # Setup Flask application
 app = Flask(__name__)
 app.secret_key = flask_secrets.get(SECRET_STRING_FLASK_SECRET_KEY)
-app.secret_key = 'SECRET'
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 api = Api(app)
 
@@ -31,6 +30,7 @@ def test():
 # [GET] Place the robot on the board
 @app.route('/place')
 def place():
+    print('/place')
     robot_view = RobotView()
     response = robot_view.place_robot()
 

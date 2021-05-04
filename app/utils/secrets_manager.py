@@ -3,7 +3,7 @@ import json
 import boto3
 from botocore.exceptions import ClientError
 
-SECRET_NAME_DATABASE = 'RDSCredentials'
+SECRET_NAME_DATABASE = 'DatabaseCredentials'
 SECRET_NAME_AUTH0 = 'Auth0Secrets'
 SECRET_NAME_FLASK = 'FlaskSecrets'
 
@@ -38,7 +38,7 @@ class SecretsManager:
         try:
             kwargs = {'SecretId': name}
             response = self.secretsmanager_client.get_secret_value(**kwargs)
-        except ClientError:
+        except ClientError as e:
             return None
         else:
             return json.loads(response.get('SecretString'))
