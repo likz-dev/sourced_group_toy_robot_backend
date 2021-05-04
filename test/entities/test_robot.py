@@ -1,7 +1,7 @@
 import pytest
 
-from entities.robot import Robot, DIRECTION_NORTH, DIRECTION_WEST, DIRECTION_SOUTH, DIRECTION_EAST
-from exceptions.robot_exception import RobotException, ERROR_ROBOT_NOT_INITIALIZED, ERROR_ROBOT_OFF_THE_BOARD, \
+from app.entities.robot import Robot, DIRECTION_NORTH, DIRECTION_WEST, DIRECTION_SOUTH, DIRECTION_EAST
+from app.exceptions.robot_exception import RobotException, ERROR_ROBOT_NOT_INITIALIZED, ERROR_ROBOT_OFF_THE_BOARD, \
     ERROR_ROBOT_MISSING_PARAMS
 
 

@@ -2,7 +2,7 @@ import uuid
 
 from mock import MagicMock
 
-from exceptions.robot_exception import ERROR_ROBOT_MISSING_PARAMS, ERROR_ROBOT_NOT_INITIALIZED, \
+from app.exceptions.robot_exception import ERROR_ROBOT_MISSING_PARAMS, ERROR_ROBOT_NOT_INITIALIZED, \
     ERROR_ROBOT_OFF_THE_BOARD
 
 

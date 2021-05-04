@@ -1,6 +1,6 @@
 from functools import wraps
 
-from exceptions.robot_exception import RobotException, ERROR_ROBOT_NOT_INITIALIZED, ERROR_ROBOT_OFF_THE_BOARD, \
+from app.exceptions.robot_exception import RobotException, ERROR_ROBOT_NOT_INITIALIZED, ERROR_ROBOT_OFF_THE_BOARD, \
     ERROR_ROBOT_MISSING_PARAMS
 
 BOARD_SIZE_X = 5

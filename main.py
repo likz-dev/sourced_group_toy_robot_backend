@@ -1,9 +1,7 @@
-import uuid
-
 from flask import Flask
 from flask_restful import Api
 from flask_cors import CORS
-from views.robot_view import RobotView
+from app.views.robot_view import RobotView
 
 # Setup Flask application
 

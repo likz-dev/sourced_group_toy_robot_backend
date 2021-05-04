@@ -2,9 +2,9 @@ import uuid
 
 from flask import session, request, abort
 
-from entities import robot
-from entities.robot import Robot
-from exceptions.robot_exception import RobotException
+from app.entities import robot
+from app.entities.robot import Robot
+from app.exceptions.robot_exception import RobotException
 
 KEY_SESSION_ROBOT = 'robot'
 KEY_SESSION_ID = 'session_id'
