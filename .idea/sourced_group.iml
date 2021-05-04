@@ -10,6 +10,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name=".aws" />
   </component>
   <component name="PackageRequirementsSettings">
     <option name="requirementsPath" value="" />
