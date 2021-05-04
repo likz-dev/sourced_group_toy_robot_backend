@@ -18,8 +18,13 @@ SUCCESS_RESPONSE_TEMPLATE = {'success': True}
 FAILURE_RESPONSE_TEMPLATE = {'success': False}
 
 
+@app.route('/')
+def index():
+    return {'healthy': True}
+
+
 @app.route('/test')
-def hello_world():
+def test():
     return {'healthy': True}
 
 
