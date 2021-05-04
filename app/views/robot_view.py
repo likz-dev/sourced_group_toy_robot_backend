@@ -20,6 +20,9 @@ class RobotView:
         session_id = self.args.get(KEY_SESSION_ID)
 
         if session_id:
+            print(type(session_id))
+            print(f'using session_id {session_id}')
+            print(session.get(session_id))
             # If there is an existing session, then reconstruct the robot using session info
             robot_session_info = session.get(session_id).get(KEY_SESSION_ROBOT)
             self.robot = Robot(robot_session_info)
@@ -29,9 +32,13 @@ class RobotView:
             self.robot = Robot()
 
     def create_session(self, session_id):
+        print(f'creating new session with id: {session_id}')
         session[session_id] = {
             KEY_SESSION_ROBOT: self.robot.report()
         }
+        print(session)
+        print(session[session_id])
+        print(session.get(session_id))
 
     def update_session(self):
         session_id = self.args.get(KEY_SESSION_ID)

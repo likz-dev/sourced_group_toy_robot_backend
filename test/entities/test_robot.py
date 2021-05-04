@@ -58,6 +58,7 @@ def test_right(current_facing, expected_facing, mock_robot):
     assert mock_robot.facing == expected_facing
 
 
+
 @pytest.mark.parametrize('current_facing, expected_x, expected_y', [
     (DIRECTION_NORTH, 1, 3),
     (DIRECTION_EAST, 2, 2),
